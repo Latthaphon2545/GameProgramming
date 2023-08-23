@@ -48,7 +48,7 @@ while running:
             if event.key == pygame.K_RIGHT:
                 player.speedx = 10
             if event.key == pygame.K_SPACE:
-                player.shoot()
+                 player.shoot()
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 player.speedx = 0

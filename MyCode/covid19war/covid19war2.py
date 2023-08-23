@@ -25,13 +25,13 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.rect.x += self.speedx
         if (self.speedx < 0 ) and (self.lastSpeedx != self.speedx):
-            #print("left",self.lastSpeedx,self.speedx)
+            # print("left",self.lastSpeedx,self.speedx)
             self.image = self.playerImages[1]
         elif (self.speedx > 0 ) and (self.lastSpeedx != self.speedx):
-            #print("right",self.lastSpeedx,self.speedx)
+            # print("right",self.lastSpeedx,self.speedx)
             self.image = self.playerImages[2]
         elif (self.speedx == 0)  and (self.lastSpeedx != self.speedx):
-            #print("center",self.lastSpeedx,self.speedx)
+            # print("center",self.lastSpeedx,self.speedx)
             self.image = self.playerImages[0]
         self.lastSpeedx = self.speedx
 

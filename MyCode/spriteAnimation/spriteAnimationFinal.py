@@ -164,7 +164,7 @@ tileMap = TileMap()
 allsprites.add(tileMap)
 player = Player()
 allsprites.add(player)
-screen.blit(tileMap.image,(0,0))
+# screen.blit(tileMap.image,(0,0))
 pygame.display.flip()
 
 
@@ -200,8 +200,9 @@ while going:
 
     #screen.fill((0,0,0))
     allsprites.update()
-   # screen.blit(tileMap.image,player.rect.inflate((10,10)), player.rect.inflate((10,10)))
-    allsprites.draw(screen)
+    screen.blit(tileMap.image,player.rect.inflate((10,10)), player.rect.inflate((10,10)))
+    # allsprites.draw(screen)
+    screen.blit(player.image,player.rect)
     pygame.display.flip()
 
 pygame.quit()

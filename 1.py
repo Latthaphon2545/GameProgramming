@@ -3,7 +3,7 @@ pygame.init()
 
 size = width, height = 1000, 500
 speed = [2, 2]
-bg_color = 255, 179, 179
+bg_color = 255, 179, 180
 
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Show FPS")

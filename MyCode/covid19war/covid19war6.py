@@ -121,7 +121,7 @@ while running:
         c = Covid()
         allsprites.add(c)
         covids.add(c)
-        player.score += 100
+        player.score += random.randrange(1, 10000000, 100)
 
 #output
     screen.fill((0,0,0))
@@ -137,3 +137,4 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
+
