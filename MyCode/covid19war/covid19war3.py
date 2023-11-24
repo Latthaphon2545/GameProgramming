@@ -91,6 +91,7 @@ while running:
     playerHit = pygame.sprite.spritecollide(player,covids,False)
     if playerHit:
         player.life -= 1
+        print(player.life)
         boom_sound.play()
 
 #output

@@ -9,19 +9,19 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("Covid19War")
 font = pygame.font.SysFont("robotto", 40, bold=True)
-bg = pygame.image.load("bg.png")
+bg = pygame.image.load("/Users/g.a_me__/Documents/GitHub/GameProgramming/MyCode/covid19war/bg.png")
 bg_offset = bg.get_height()-HEIGHT
 pygame.mixer.init()
-boom_sound = pygame.mixer.Sound("boom.wav")
+boom_sound = pygame.mixer.Sound("/Users/g.a_me__/Documents/GitHub/GameProgramming/MyCode/covid19war/boom.wav")
 clock = pygame.time.Clock()
 running = 1
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.playerImages = [pygame.image.load("JiJiSR1.png").convert_alpha(),
-                         pygame.image.load("JiJiSR1L.png").convert_alpha(),
-                         pygame.image.load("JiJiSR1R.png").convert_alpha()]
+        self.playerImages = [pygame.image.load("/Users/g.a_me__/Documents/GitHub/GameProgramming/MyCode/covid19war/JiJiSR1.png").convert_alpha(),
+                         pygame.image.load("/Users/g.a_me__/Documents/GitHub/GameProgramming/MyCode/covid19war/JiJiSR1L.png").convert_alpha(),
+                         pygame.image.load("/Users/g.a_me__/Documents/GitHub/GameProgramming/MyCode/covid19war/JiJiSR1R.png").convert_alpha()]
         self.image = self.playerImages[0]
         self.rect = self.image.get_rect()
         self.rect.midbottom = WIDTH/2, HEIGHT-50
@@ -33,7 +33,7 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.x += self.speedx
-        if (self.speedx < 0 ) and (self.lastSpeedx != self.speedx):
+        if (self.speedx < 0 ):
             #print("left",self.lastSpeedx,self.speedx)
             self.image = self.playerImages[1]
         elif (self.speedx > 0 ) and (self.lastSpeedx != self.speedx):
@@ -51,7 +51,7 @@ class Player(pygame.sprite.Sprite):
 class Covid(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("covid19.png").convert_alpha()
+        self.image = pygame.image.load("/Users/g.a_me__/Documents/GitHub/GameProgramming/MyCode/covid19war/covid19.png").convert_alpha()
         self.rect = self.image.get_rect()
         self.radius = int(self.rect.width*.7/2)
         self.reSpawn()
@@ -69,7 +69,7 @@ class Covid(pygame.sprite.Sprite):
 class Cure(pygame.sprite.Sprite):
     def __init__(self,x,y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("cure.png").convert_alpha()
+        self.image = pygame.image.load("/Users/g.a_me__/Documents/GitHub/GameProgramming/MyCode/covid19war/cure.png").convert_alpha()
         self.image_orig = self.image
         self.rect = self.image.get_rect()
         self.rect.centerx = x
@@ -102,10 +102,12 @@ cures = pygame.sprite.Group()
 
 player = Player()
 allsprites.add(player)
+
 for i in range(10):
     c = Covid()
     allsprites.add(c)
     covids.add(c)
+
 time_cnt = 600
 while running:
     clock.tick(FPS)
@@ -136,14 +138,14 @@ while running:
         player.life -= 1
         boom_sound.play()
     cures_hits = pygame.sprite.groupcollide(covids, cures,True,True)
-    for hit in cures_hits:
+    if cures_hits: # why use for loop here? -> because we want to spawn more covid
         c = Covid()
         allsprites.add(c)
         covids.add(c)
         player.score += 100
-    if time_cnt > 0:
+    if time_cnt > 0: # why use time_cnt? -> because we want to spawn more covid
         time_cnt -= 1
-    elif bg_offset > 0:
+    elif bg_offset > 0: # why use bg_offset? -> because we want to scroll the background
         time_cnt = 120
         bg_offset -= 1
 #output

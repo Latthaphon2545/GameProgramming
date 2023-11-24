@@ -30,7 +30,7 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.x += self.speedx
-        if (self.speedx < 0 ) and (self.lastSpeedx != self.speedx):
+        if (self.speedx < 0 ) and (self.lastSpeedx != self.speedx): # left and not last left speed
             #print("left",self.lastSpeedx,self.speedx)
             self.image = self.playerImages[1]
         elif (self.speedx > 0 ) and (self.lastSpeedx != self.speedx):
@@ -126,7 +126,7 @@ while running:
 #output
     screen.fill((0,0,0))
     allsprites.draw(screen)
-    pygame.draw.rect(screen,(0,255,255),(10,10,player.life,10))
+    pygame.draw.rect(screen,(0,255,255),(10,10,player.life,10)) # (10,10,player.life,10) 
     textScore = font.render("score " + str(player.score), True, (0,255,255))
     screen.blit(textScore,((WIDTH-textScore.get_width())/2, 10))
     if player.life < 0:

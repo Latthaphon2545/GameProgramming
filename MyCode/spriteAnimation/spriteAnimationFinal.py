@@ -64,12 +64,12 @@ class Player(pygame.sprite.Sprite):
         self.playerSpeed = 4
 
     def update(self):
-        self.ani_speed += 1
-        if self.dir == 0:
-            self.rect.y -= self.playerSpeed
-            if self.ani_speed >= self.interFrame:
+        self.ani_speed += 1 #animation speed
+        if self.dir == 0: #direction 0 = north, 1 = east, 2 = south, 3 = west
+            self.rect.y -= self.playerSpeed # move player up
+            if self.ani_speed >= self.interFrame: # interframe is the speed of the animation and ani_speed is the counter
                 self.ani_speed = 1
-                self.index +=1
+                self.index +=1  
                 if self.index >= len(self.walkNorths):
                     self.index =0;
                 self.image = self.walkNorths[self.index]
@@ -145,6 +145,7 @@ class TileMap(pygame.sprite.Sprite):
         self.loadMap()
         self.px =0
         self.py =0
+        
     def loadMap(self):
         x = 0
         y = 0

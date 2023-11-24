@@ -13,10 +13,19 @@ clock = pygame.time.Clock()
 font = pygame.font.SysFont("robotto", 24)
 
 while True:
-    clock.tick(60)
+    clock.tick(240)
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
 
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                speed[0] = abs(speed[0])
+            elif event.key == pygame.K_LEFT:
+                speed[0] = -abs(speed[0])
+            elif event.key == pygame.K_UP:
+                speed[1] = -abs(speed[1])
+            elif event.key == pygame.K_DOWN:
+                speed[1] = abs(speed[1])
     
     ballrect = ballrect.move(speed)
     if ballrect.left < 0 or ballrect.right > width:
@@ -29,4 +38,5 @@ while True:
     screen.fill(bg_color)
     screen.blit(textFps,(20,20))
     screen.blit(ball, ballrect)
+    pygame.draw.rect(screen, pygame.Color("black"), (0,0,width,height), 1)
     pygame.display.flip()
